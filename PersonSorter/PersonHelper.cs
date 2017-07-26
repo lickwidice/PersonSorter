@@ -29,6 +29,8 @@ namespace PersonSorter
                         .OrderByDescending(item => item.Value)
                         .ThenBy(item => item.Key);
 
+            File.WriteAllLines("Q1.txt", result.Select(x => x.Key + ", " + x.Value.ToString()).ToArray());
+
             return result.ToList();
         }
 
@@ -37,6 +39,9 @@ namespace PersonSorter
             var records = ReadCSV();
             var result = records.OrderBy(person => String.Join(" ", person.Address.Split(' ').Skip(1)))
                          .Select(person => person.Address);
+
+            File.WriteAllLines("Q2.txt", result.ToArray());
+
             return result.ToList();
         }
     }
